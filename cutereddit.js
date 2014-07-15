@@ -14,11 +14,15 @@ var process_subreddit = function(i, data) {
     if (!data.data.header_img || !data.data.header_size) {
         return;
     }
+    var tall = data.data.header_size[1] > data.data.header_size[0]
     var sum = data.data.public_description.split('\n')[0]
     sum = $('<span>').html(sum).text();
     $logo = $('<div>')
     .addClass('header')
     .css('background-image', 'url("' + if_https_rewrite(data.data.header_img) + '")');
+    if (tall) {
+        $logo.addClass('tall');
+    }
     $sr = $('<a>')
     .attr('href', reddit + '/r/' + data.data.display_name)
     .attr('title', sum)

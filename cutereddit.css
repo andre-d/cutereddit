@@ -16,6 +16,10 @@ body, html {
     margin-bottom: 5px;
 }
 
+.sr .header.tall {
+    background-position: center; 
+}
+
 .sr:hover .header {
     box-shadow: 2px 2px 1px 1px grey;
 }
