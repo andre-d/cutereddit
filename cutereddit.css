@@ -1,0 +1,36 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    
+    text-align: center;
+}
+
+.sr .header {
+    box-shadow: 2px 2px 1px grey;
+    border: 1px solid rgba(0, 0, 0, .2);
+    width: 50px;;
+    height: 50px;;
+    border-radius: 50px;;
+    background-size: auto 50px;;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+.sr {
+    display: inline-block;
+    width: 150px;
+    margin: 15px;
+    text-decoration: none;
+}
+
+.sr .name {
+    color: rgba(0, 0, 0, .7);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+h1 {
+    text-align: center;
+}
+
