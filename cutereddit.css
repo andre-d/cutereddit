@@ -17,6 +17,14 @@ body, html {
     margin-bottom: 5px;
 }
 
+.sr:hover .header {
+    box-shadow: 2px 2px 1px 1px grey;
+}
+
+.sr:hover .name {
+    text-decoration: underline;
+}
+
 .sr {
     display: inline-block;
     width: 150px;
