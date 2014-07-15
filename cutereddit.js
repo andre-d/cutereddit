@@ -1,3 +1,15 @@
+var reddit = 'http://www.reddit.com';
+if (location.protocol == 'https:') {
+    reddit = 'https://pay.reddit.com';
+}
+
+var if_https_rewrite = function(url) {
+    if (location.protocol == 'https:') {
+        return  'https://s3.amazonaws.com/' + url.split('://')[1]
+    }
+    return url;
+}
+
 var process_subreddit = function(i, data) {
     if (!data.data.header_img || !data.data.header_size) {
         return;
@@ -6,9 +18,9 @@ var process_subreddit = function(i, data) {
     sum = $('<span>').html(sum).text();
     $logo = $('<div>')
     .addClass('header')
-    .css('background-image', 'url("' + data.data.header_img + '")');
+    .css('background-image', 'url("' + if_https_rewrite(data.data.header_img) + '")');
     $sr = $('<a>')
-    .attr('href', 'http://www.reddit.com/r/' + data.data.display_name)
+    .attr('href', reddit + '/r/' + data.data.display_name)
     .attr('title', sum)
     .append($logo)
     .addClass('sr')
@@ -22,7 +34,7 @@ var process_subreddits = function(data) {
 }
 
 $(function() {
-$.ajax('http://www.reddit.com/subreddits.json?limit=100',
+$.ajax(reddit + '/subreddits.json?limit=100',
        {
            dataType: 'json',
            success: process_subreddits
