@@ -109,14 +109,67 @@ body, html {
     display: block;
     text-align: left;
     margin: 15px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    min-height: 100px;
+    overflow: hidden;
     box-shadow: 1px 1px 5px grey;
+    height: 100px;
 }
 
 .link .title {
+    display: inline;
+}
+
+.link .title a {
+    display: table;
+    color: black;
+    height: 100%;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.link .title a span {
+    vertical-align: middle;
+    display: table-cell; 
+}
+
+.link .thumb img {
+    height: 100px;
+}
+
+.link .thumb {
+    line-height: 0;
+    float: left;
+    width: 100px;
+    overflow: hidden;
+}
+
+.score, .comments {
+    float: right;
+    width: 100px;
     text-align: center;
+    background-color: rgba(0, 0, 0, .1);
+    height: 100px;
+    vertical-align: middle;
+    color: rgba(0, 0, 0, .6);
+}
+
+.score label, .comments label {
+    display: block;
+    line-height: normal;
+    color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .1);
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.score {
+    float: left;
+}
+
+.score div, .comments div {
+    position: relative;
+    line-height: 80px;
 }
 
 .app_title {

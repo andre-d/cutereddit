@@ -69,9 +69,23 @@ CuteReddit.ContentView = {
     },
     add_obj: function(data) {
         if (data.kind == 't3') {
+            var link = data.data;
             var $link = $('<div>').addClass('link')
-            var $title = $('<div>').addClass('title').appendTo($link)
-            $title.text(data.data.title)
+            
+            
+            if (link.thumbnail && link.thumbnail != 'self') {
+                var $thumb = $('<a>').addClass('thumb').appendTo($link)
+                $thumb.append($('<img>').attr('src', link.thumbnail)).attr('href', link.url)
+            }
+            
+            
+            var $score = $('<span>').addClass('score').appendTo($link)
+           
+            var $comments = $('<span>').addClass('comments').appendTo($link)
+            var $title = $('<span>').append($('<a>')).addClass('title').appendTo($link)
+            $title.attr('href', '#' + link.permalink).find('a').append($('<span>').text(link.title))
+            $comments.append($('<label>').text('comments')).append($('<div>').text(link.num_comments))
+            $score.append($('<label>').text('score')).append($('<div>').text(link.score))
             $('#content_body').append($link)
         }
     },
