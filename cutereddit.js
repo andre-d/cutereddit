@@ -76,6 +76,7 @@ CuteReddit.ContentView = {
         }
     },
     render_page: function(data) {
+        $('body').scrollTop(0);
         $('#context_header').empty();
         $('#content_body').empty()
         $('#context_header').append(new CuteReddit.SubredditButton(this.context).$el)
@@ -99,7 +100,9 @@ CuteReddit.SubredditList = {
         this.$el.find('li').removeClass('selected')
         var sr = this.subreddits[name.toLowerCase()]
         sr.button.$el.parent().addClass('selected')
-        CuteReddit.ContentView.init(sr.url, sr)
+        if (CuteReddit.ContentView.context != sr) {
+            CuteReddit.ContentView.init(sr.url, sr)
+        }
     },
     add_by_name: function(name, nav_to) {
         name = name.split('/r/')[1]
