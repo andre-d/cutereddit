@@ -79,7 +79,7 @@ CuteReddit.ContentView = {
             
             if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
                 var $thumb = $('<a>').addClass('thumb').appendTo($link)
-                $thumb.append($('<img>').attr('src', link.thumbnail)).attr('href', link.url)
+                $thumb.append($('<img>').attr('src', CuteReddit.Utils.reddit_cdn_url(link.thumbnail))).attr('href', link.url)
             }
             
             
