@@ -13,13 +13,16 @@ body, html {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     text-align: center;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #sidebar {
+    background-color: white;
     text-align: center;
     position: fixed;
     left: 0;
+    top: 0;
     width: 180px;
     height: 100%;
     overflow-y: auto;
