@@ -3,6 +3,7 @@ body, html {
     margin: 0;
     text-align: center;
     background-color: white;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .sr .header {
