@@ -155,9 +155,12 @@ CuteReddit.SubredditList = {
 
 CuteReddit.Utils = {
     make_reddit_url: function(url) {
-        var reddit = 'http://www.reddit.com/'
+        if (url[0] != '/') {
+            url = '/' + url;
+        }
+        var reddit = 'http://www.reddit.com'
         if (location.protocol == 'https:') {
-            reddit = 'https://pay.reddit.com/'
+            reddit = 'https://pay.reddit.com'
         }
         return reddit + url
     },
