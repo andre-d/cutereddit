@@ -21,13 +21,11 @@ body, html {
     background-color: white;
     text-align: center;
     position: fixed;
-    left: 0;
-    top: 0;
-    width: 180px;
+    width: 150px;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-shadow: 2px 0 2px grey;
+    padding: 0;
+    box-shadow: 2px 0 2px lightgrey;
+    overflow: hidden;
 }
 
 .sr .header {
@@ -45,6 +43,10 @@ body, html {
     margin-bottom: 5px;
 }
 
+#context_header .sr {
+    margin: 0 auto;
+}
+
 .sr .header.tall {
     background-position: center; 
 }
@@ -60,6 +62,15 @@ body, html {
 #srlist {
     list-style-type: none;
     padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 150px;
+    background-color: white;
+    margin: 0;
+    margin-top: 10px;
+    position: absolute;
+    top: 40px;
+    bottom: 0;
 }
 
 #srlist .selected {
@@ -67,11 +78,11 @@ body, html {
 }
 
 .sr {
-    margin: 0 auto;
+    margin: 0 0;
     text-decoration: none;
     text-align: center;
     display: block;
-    width: 150px;
+    width: 75px;
 }
 
 #content .name {
@@ -152,6 +163,7 @@ body, html {
     height: 100px;
     vertical-align: middle;
     color: rgba(0, 0, 0, .6);
+    position: relative;
 }
 
 .score label, .comments label {
@@ -173,5 +185,8 @@ body, html {
 }
 
 .app_title {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
     color: rgba(0, 0, 0, .8);
 }
