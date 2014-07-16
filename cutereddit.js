@@ -3,6 +3,10 @@ var CuteReddit = {
     init: function() {
         CuteReddit.SubredditList.init()
         this.nav(window.location.hash.substring(1))
+        $('body').on('click', 'a.sr', function(e) {
+            e.preventDefault()
+            CuteReddit.nav(this.href.split('#')[1])
+        })
         window.onpopstate = $.proxy(this.nav_changed, this)
     },
     nav_changed: function() {
