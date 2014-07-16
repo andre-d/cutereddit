@@ -73,7 +73,7 @@ CuteReddit.ContentView = {
             var $link = $('<div>').addClass('link')
             
             
-            if (link.thumbnail && link.thumbnail != 'self') {
+            if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
                 var $thumb = $('<a>').addClass('thumb').appendTo($link)
                 $thumb.append($('<img>').attr('src', link.thumbnail)).attr('href', link.url)
             }
