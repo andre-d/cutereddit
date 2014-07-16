@@ -1,21 +1,43 @@
 body, html {
     height: 100%;
     margin: 0;
-    text-align: center;
     background-color: white;
     font-family: 'Open Sans', sans-serif;
+}
+
+#content {
+    padding-left: 180px;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    overflow-x:
+}
+
+#sidebar {
+    text-align: center;
+    position: fixed;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 2px 0 2px grey;
 }
 
 .sr .header {
     border: 1px solid rgba(0, 0, 0, .1);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
     width: 50px;
+    display: block;
+    margin: 0 auto;
     height: 50px;
     border-radius: 50px;
     background-size: auto 52px;
     background-position: -1px -1px; 
     background-repeat: no-repeat;
-    margin: 0 auto;
     background-color: rgba(255, 255, 255, .05);
     margin-bottom: 5px;
 }
@@ -32,11 +54,30 @@ body, html {
     box-shadow: 0 0 1px rgba(0, 0, 0, .5);
 }
 
+#srlist {
+    list-style-type: none;
+    padding: 0;
+}
+
+#srlist .selected {
+    background-color: rgba(0, 0, 0, .1);
+}
+
 .sr {
-    display: inline-block;
-    width: 150px;
-    margin: 15px;
+    margin: 0 auto;
     text-decoration: none;
+    text-align: center;
+    display: block;
+    width: 150px;
+}
+
+#content .name {
+    font-size: 24px;
+}
+
+#srlist .sr {
+    display: inline-block;
+    padding: 15px;
 }
 
 .sr .name {
@@ -45,7 +86,36 @@ body, html {
     font-size: 12px;
 }
 
-h1 {
+.status_loading {
+    display: none;
+}
+
+
+.loading .status_loading {
+    display: block;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+#content_body {
+    Width: 100%;
+}
+
+.link {
+    display: block;
+    text-align: left;
+    margin: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    min-height: 100px;
+    box-shadow: 1px 1px 5px grey;
+}
+
+.link .title {
     text-align: center;
 }
 
+.app_title {
+    color: rgba(0, 0, 0, .8);
+}
