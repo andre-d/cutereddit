@@ -8,6 +8,8 @@ var CuteReddit = {
             if (href && href[0] == '#') {
                 e.preventDefault()
                 CuteReddit.nav(this.href.split('#')[1])
+            } else {
+                this.target = '_blank'
             }
         })
         window.onpopstate = $.proxy(this.nav_changed, this)
