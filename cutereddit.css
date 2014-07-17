@@ -10,7 +10,7 @@ body, html {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-    background-color: rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, .25);`
 }
 
 #content {
@@ -136,7 +136,6 @@ body, html {
     display: table;
     table-layout: fixed;
     width: 100%;
-    padding: 5px;
     vertical-align: left;
 }
 
@@ -197,9 +196,13 @@ body, html {
 }
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 540px) {
     body  {
         font-size: .8em;
+    }
+    .link .title {
+        height: initial;
+        display: table-row; 
     }
     #content {
         padding-left: 100px;
