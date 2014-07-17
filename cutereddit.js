@@ -161,10 +161,13 @@ CuteReddit.ContentView = {
             
             var html = $('<div>').html(comment.body_html).text()
             $outerlink.append($('<div>').addClass('selftext').html(html))
-
-            parent = parent ? parent : $('#content_body')
-            parent = $('<div>').addClass('nest').insertAfter(parent)
-            parent.append($outerlink)
+            
+            if (parent) {
+                parent = $('<div>').addClass('nest').insertAfter(parent)
+                parent.append($outerlink)
+            } else {
+                $('#content_body').append($outerlink)
+            }
 
             var add = $.proxy(this.add_obj, this)
             if (comment.replies) {
