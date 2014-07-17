@@ -94,7 +94,7 @@ body, html {
 }
 
 #content .name {
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 #srlist .sr {
@@ -105,7 +105,7 @@ body, html {
 .sr .name {
     color: rgba(0, 0, 0, .75);
     font-weight: bold;
-    font-size: 12px;
+    font-size: .9em;
 }
 
 .status_loading {
@@ -147,7 +147,7 @@ body, html {
     vertical-align: middle;
     color: black;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1.1em;
     padding: 0 15px;
     margin: 0 auto;
 }
@@ -189,4 +189,26 @@ body, html {
     line-height: 40px;
     margin: 0;
     color: rgba(0, 0, 0, .8);
+}
+
+
+@media only screen and (max-width: 500px) {
+    body  {
+        font-size: .8em;
+    }
+    #content {
+        padding-left: 100px;
+    }
+    #sidebar {
+        width: 100px;
+    }
+    #srlist {
+        width: 100px;
+    }
+    #srlist .sr {
+        padding: 0;
+    }
+    .app_title {
+        font-size: 1.3em;
+    }
 }
