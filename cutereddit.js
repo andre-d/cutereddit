@@ -287,7 +287,7 @@ CuteReddit.Utils = {
     },
     reddit_cdn_url: function(url) {
         if (location.protocol == 'https:') {
-            return 'https://s3.amazonaws.com/' + url.split('://')[1]
+            return 'https://' + url.split('://')[1]
         }
         return url
     },
