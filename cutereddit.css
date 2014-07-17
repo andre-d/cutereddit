@@ -40,7 +40,6 @@ body, html {
     border: 1px solid rgba(0, 0, 0, .1);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, .4);
     width: 50px;
-    display: block;
     margin: 0 auto;
     height: 50px;
     border-radius: 50px;
@@ -53,6 +52,7 @@ body, html {
 
 #context_header .sr {
     margin: 0 auto;
+    display: block;
     padding-top: 5px;
 }
 
@@ -90,7 +90,6 @@ body, html {
     margin: 0 0;
     text-decoration: none;
     text-align: center;
-    display: block;
     width: 75px;
 }
 
