@@ -36,13 +36,14 @@ var CuteReddit = {
     }
 }
 
-CuteReddit.SubredditButton = function(sr) {
-    this.init(sr);
+CuteReddit.SubredditButton = function(sr, name) {
+    this.init(sr, name);
 }
 
 CuteReddit.SubredditButton.prototype = {
-    init: function(sr) {
+    init: function(sr, name) {
         this.sr = sr
+        name = name ? name : sr.display_name
         var tall = false
         var url = CuteReddit.Utils.make_reddit_url('/static/reddit.com.header.png')
         if (this.sr.header_img && this.sr.header_size) {
@@ -63,7 +64,7 @@ CuteReddit.SubredditButton.prototype = {
             .attr('title', sum)
             .append($logo)
             .addClass('sr')
-            .append($('<span>').text(sr.display_name).addClass('name'))
+            .append($('<span>').text(name).addClass('name'))
     }
 }
 
@@ -149,7 +150,7 @@ CuteReddit.ContentView = {
         this.$el.scrollTop(0);
         $('#context_header').empty();
         $('#content_body').empty()
-        $('#context_header').append(new CuteReddit.SubredditButton(this.context).$el)
+        $('#context_header').append(new CuteReddit.SubredditButton(this.context, this.path).$el)
         var add = $.proxy(this.add_obj, this)
         this.type = data.data ? 'listing' : 'comments'
         var datas = data.data ? [data] : data
