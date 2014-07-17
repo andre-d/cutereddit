@@ -199,23 +199,27 @@ body, html {
     color: rgba(0, 0, 0, .8);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .link .thumb .imgwrap {
         max-height: 200px;
     }
-    
+    .link .title {
+        height: initial;
+        display: table-row;
+    }
+}
+
+@media only screen and (max-width: 550px) {
     body  {
         font-size: .8em;
+    }
+    .link .title {
+        font-size: 1.3em;
     }
     .status {
         height: 32px;
         font-size: 14px;
         line-height: 32px;
-    }
-    .link .title {
-        height: initial;
-        display: table-row;
-        font-size: 1.3em;
     }
     #content {
         padding-left: 100px;
