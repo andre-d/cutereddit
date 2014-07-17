@@ -53,6 +53,7 @@ body, html {
 
 #context_header .sr {
     margin: 0 auto;
+    padding-top: 5px;
 }
 
 .sr .header.tall {
@@ -170,22 +171,24 @@ body, html {
     padding: 0 5px;
     height: 25px;
     box-sizing: border-box;
+    font-weight: bold;
+    font-size: 1px;
     -moz-box-sizing: border-box;
     width: 100%;
     background-color: rgba(0, 0, 0, .1);
 }
 
 .score, .comments {
-    color: rgba(0, 0, 0, .6) !important;
+    color: rgba(0, 0, 0, .8) !important;
     text-decoration: none;
 }
 
 .score {
-    float: right;
+    float: left;
 }
 
 .comments {
-    float: left;
+    float: right;
 }
 
 .app_title {
@@ -199,6 +202,11 @@ body, html {
 @media only screen and (max-width: 540px) {
     body  {
         font-size: .8em;
+    }
+    .status {
+        height: 32px;
+        font-size: 14px;
+        line-height: 32px;
     }
     .link .title {
         height: initial;
@@ -214,7 +222,7 @@ body, html {
         width: 100px;
     }
     #srlist .sr {
-        padding: 0;
+        padding: 5px;
     }
     .app_title {
         font-size: 1.3em;
