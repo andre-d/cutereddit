@@ -273,11 +273,19 @@ CuteReddit.Utils = {
         return reddit + url
     },
     imgur_rewrite: function(path) {
+        /* TODO: REGEX */
         path = path.replace('/a/', '/gallery/')
-        path = path.replace('i.imgur.com', 'imgur.com')
-        path = path.replace('http://', 'https://')
+        path = path.split('imgur.com/')
+        path = path.length > 1 ? path[1] : path[0]
+        if (path.slice(-4)[0] == '.') {
+            path = path.slice(0, -4)
+        }
         path = path.split('?')[0]
-        return path.replace('.png', '').replace('.jpg', '').replace('.gif', '')
+        // Modern thumbnail link
+        if (path.length == 8 || path.length == 6) {
+            path = path.slice(0, - 1)
+        }
+        return 'https://imgur.com/' + path 
     },
     norm_path: function(path) {
         if (path.substr(-1) == '/') {
