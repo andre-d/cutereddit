@@ -172,8 +172,12 @@ body, html {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     width: 100%;
-    color: rgba(0, 0, 0, .6);
     background-color: rgba(0, 0, 0, .1);
+}
+
+.score, .comments {
+    color: rgba(0, 0, 0, .6) !important;
+    text-decoration: none;
 }
 
 .score {
