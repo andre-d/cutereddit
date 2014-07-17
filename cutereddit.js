@@ -106,7 +106,7 @@ CuteReddit.ContentView = {
             if (media_url.indexOf('http://i.imgur.com') == 0 || media_url.indexOf('http://imgur.com') == 0) {
                 media_url = CuteReddit.Utils.imgur_rewrite(media_url)
                 if (media_url.indexOf('https://imgur.com/gallery/') != 0) {
-                    thumbnail_url = media_url.replace('http://', 'http://i.') + 'm.jpg'
+                    thumbnail_url = media_url.replace('http://', 'http://i.') + 'b.jpg'
                 }
             }
             
