@@ -162,8 +162,12 @@ body, html {
 .link .thumb {
     line-height: 0;
     width: 100px;
-    display: table-cell; 
+    display: table-cell;
     vertical-align: middle;
+}
+
+.outerlink .selftext {
+    font-size: 13px;
 }
 
 .status {

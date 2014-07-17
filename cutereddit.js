@@ -68,12 +68,13 @@ CuteReddit.SubredditButton.prototype = {
 }
 
 CuteReddit.ContentView = {
-    init: function(url, context) {
+    init: function(path, context) {
+        this.path = path
         this.$el = $('#content')
         this.$el.addClass('loading')
         this.context = context
         CuteReddit.Utils.ajax(
-            url + '.json'
+            path + '.json'
         ).done($.proxy(this.render_page, this))
     },
     add_embed: function(link, data) {
@@ -135,10 +136,13 @@ CuteReddit.ContentView = {
                     }
                 }, true).done($.proxy(this.add_embed, this, link))
             }
+            
+            if(this.type != 'listing' && link.is_self) {
+                var html = $('<div>').html(link.selftext_html).text()
+                $outerlink.append($('<div>').addClass('selftext').html(html))
+            }
 
             $('#content_body').append($outerlink)
-            
-            
         }
     },
     render_page: function(data) {
@@ -147,7 +151,11 @@ CuteReddit.ContentView = {
         $('#content_body').empty()
         $('#context_header').append(new CuteReddit.SubredditButton(this.context).$el)
         var add = $.proxy(this.add_obj, this)
-        $.each(data.data.children, function(i, data) {add(data)})
+        this.type = data.data ? 'listing' : 'comments'
+        var datas = data.data ? [data] : data
+        $.each(datas, function(i, data) {
+            $.each(data.data.children, function(i, data) {add(data)})
+        })
         this.$el.removeClass('loading')
     }
 }
@@ -162,24 +170,26 @@ CuteReddit.SubredditList = {
             {data: {limit: 10}}
         ).done($.proxy(this.init_list, this))
     },
-    nav_to: function(name) {
+    nav_to: function(path) {
+        var sr = path.split('/r/')[1].split('/')[0]
         this.$el.find('li').removeClass('selected')
-        var sr = this.subreddits[name.toLowerCase()]
+        sr = this.subreddits[sr.toLowerCase()]
         sr.button.$el.parent().addClass('selected')
-        if (CuteReddit.ContentView.context != sr) {
-            CuteReddit.ContentView.init(sr.url, sr)
+        if (CuteReddit.ContentView.path != path) {
+            CuteReddit.ContentView.init(path, sr)
         }
     },
-    add_by_name: function(name, nav_to) {
-        name = name.split('/r/')[1]
+    add_by_name: function(path, nav_to) {
+        name = path.split('/r/')[1].split('/')[0]
         if (this.subreddits[name.toLowerCase()]) {
             if (nav_to) {
-                this.nav_to(name)
+                this.nav_to(path)
             }
             return
         }
         $('#sidebar').addClass('loading')
         this.initial_complete += 1
+        nav_to = nav_to ? path : false
         CuteReddit.Utils.ajax(
             '/r/' + name + '/about.json'
         ).done($.proxy(this.add_from_response, this, nav_to))
@@ -203,7 +213,7 @@ CuteReddit.SubredditList = {
             this.subreddits[sr.display_name.toLowerCase()] = sr
         }
         if (nav_to) {
-            this.nav_to(sr.display_name)
+            this.nav_to(nav_to)
         }
     },
     init_list: function(data) {
