@@ -85,9 +85,9 @@ CuteReddit.ContentView = {
         link.embed_data = data;
         link.$em.find('img').attr('src', data.thumbnail_url)
     },
-    add_obj: function(data) {
+    add_obj: function(data, parent) {
         if (data.kind == 't3') {
-            var link = data.data;
+            var link = data.data
             var url = link.is_self ? '#' + link.permalink : link.url;
             var $link = $('<div>').addClass('link')
             var $outerlink = $('<div>').addClass('outerlink')
@@ -144,6 +144,34 @@ CuteReddit.ContentView = {
             }
 
             $('#content_body').append($outerlink)
+        }else if (data.kind == 't1') {
+            var comment = data.data
+            var $link = $('<div>').addClass('link')
+            var $outerlink = $('<div>').addClass('outerlink').addClass('comment')
+            comment.$em = $outerlink
+            
+            var $status = $('<div>').addClass('status')
+            var $score = $('<span>').addClass('score').appendTo($status)
+           
+            $status.appendTo($outerlink)
+            
+            $outerlink.append($link)
+            
+            $score.text('score ' + comment.score)
+            
+            var html = $('<div>').html(comment.body_html).text()
+            $outerlink.append($('<div>').addClass('selftext').html(html))
+
+            parent = parent ? parent : $('#content_body')
+            parent = $('<div>').addClass('nest').insertAfter(parent)
+            parent.append($outerlink)
+
+            var add = $.proxy(this.add_obj, this)
+            if (comment.replies) {
+                $.each(comment.replies.data.children, function(i, data) {
+                    add(data, $outerlink);
+                })
+            }
         }
     },
     render_page: function(data) {
