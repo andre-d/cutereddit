@@ -121,7 +121,7 @@ CuteReddit.ContentView = {
             } else if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
                 $img.attr('src', CuteReddit.Utils.reddit_cdn_url(link.thumbnail))
             } else {
-                var img = link.thumbnail == 'self' ? 'self_default2.png' : 'noimage.png'
+                var img = link.is_self ? 'self_default2.png' : 'noimage.png'
                 $img.attr('src', CuteReddit.Utils.make_reddit_url('/static/' + img))
             }
             
