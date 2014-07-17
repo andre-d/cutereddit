@@ -178,9 +178,6 @@ body, html {
     width: 100%;
     overflow: hidden;
     border-left: 1px dashed rgba(0, 0, 0, .15);
-}
-
-.nest .nest {
     padding-right: 20px;
     position: relative;
     right: -20px;

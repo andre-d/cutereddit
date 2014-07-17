@@ -171,7 +171,7 @@ CuteReddit.ContentView = {
 
             var add = $.proxy(this.add_obj, this)
             if (comment.replies) {
-                $.each(comment.replies.data.children, function(i, data) {
+                $.each(comment.replies.data.children.reverse(), function(i, data) {
                     add(data, $outerlink);
                 })
             }
