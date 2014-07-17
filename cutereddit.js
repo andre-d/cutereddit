@@ -97,12 +97,28 @@ CuteReddit.ContentView = {
             
             $outerlink.append($link)
             
+            var media_url = link.url
+            var thumbnail_url
+            if (media_url.indexOf('http://i.imgur.com') == 0 || media_url.indexOf('http://imgur.com') == 0) {
+                media_url = CuteReddit.Utils.imgur_rewrite(media_url)
+                if (media_url.indexOf('http://imgur.com/gallery/') != 0) {
+                    thumbnail_url = media_url.replace('http://', 'http://i.') + 'm.jpg'
+                }
+            }
+            
             var $thumb = $('<a>').addClass('thumb').appendTo($link)
-            if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
-                $thumb.append($('<img>').attr('src', CuteReddit.Utils.reddit_cdn_url(link.thumbnail))).attr('href', link.url)
+            var $img = $('<img>')
+            $thumb.append($('<div>').append($img).addClass('imgwrap')).attr('href', url)
+            if (link.secure_media && link.secure_media.oembed && link.secure_media.oembed.thumbnail_url) {
+                var url = link.secure_media.oembed.thumbnail_url.replace("&amp;", "&")
+                $img.attr('src', url)
+            } else if (thumbnail_url) {
+                $img.attr('src', thumbnail_url)
+            } else if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
+                $img.attr('src', CuteReddit.Utils.reddit_cdn_url(link.thumbnail))
             } else {
                 var img = link.thumbnail == 'self' ? 'self_default2.png' : 'noimage.png'
-                $thumb.append($('<img>').attr('src', CuteReddit.Utils.make_reddit_url('/static/' + img))).attr('href', url)
+                $img.attr('src', CuteReddit.Utils.make_reddit_url('/static/' + img))
             }
             
             var $title = $('<a>').addClass('title').appendTo($link)
@@ -110,11 +126,13 @@ CuteReddit.ContentView = {
             $comments.text('comments ' + link.num_comments).attr('href', '#' + link.permalink)
             $score.text('score ' + link.score)
 
-            CuteReddit.Utils.ajax('https://noembed.com/embed', {
-                data: {
-                    'url': link.url
-                }
-            }, true).done($.proxy(this.add_embed, this, link))
+            if (!link.secure_media) {
+                CuteReddit.Utils.ajax('https://noembed.com/embed', {
+                    data: {
+                        'url': media_url
+                    }
+                }, true).done($.proxy(this.add_embed, this, link))
+            }
 
             $('#content_body').append($outerlink)
             
@@ -209,6 +227,11 @@ CuteReddit.Utils = {
             reddit = 'https://pay.reddit.com'
         }
         return reddit + url
+    },
+    imgur_rewrite: function(path) {
+        path = path.replace('/a/', '/gallery/')
+        path = path.replace('i.imgur.com', 'imgur.com')
+        return path.replace('.jpg', '').replace('.gif', '')
     },
     norm_path: function(path) {
         if (path.substr(-1) == '/') {

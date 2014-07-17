@@ -146,20 +146,22 @@ body, html {
     vertical-align: middle;
     color: black;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 0 15px;
     margin: 0 auto;
 }
 
 .link .thumb img {
     width: 100px;
-    
+}
+
+.link .thumb .imgwrap {
+    max-height: 100px;
 }
 
 .link .thumb {
     line-height: 0;
     width: 100px;
-    overflow: hidden;
     display: table-cell; 
     vertical-align: middle;
 }
@@ -197,8 +199,11 @@ body, html {
     color: rgba(0, 0, 0, .8);
 }
 
-
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 600px) {
+    .link .thumb .imgwrap {
+        max-height: 200px;
+    }
+    
     body  {
         font-size: .8em;
     }
@@ -209,7 +214,8 @@ body, html {
     }
     .link .title {
         height: initial;
-        display: table-row; 
+        display: table-row;
+        font-size: 1.3em;
     }
     #content {
         padding-left: 100px;
