@@ -51,9 +51,8 @@ body, html {
 }
 
 #context_header .sr {
-    margin: 0 auto;
-    display: block;
-    padding-top: 5px;
+    position: relative;
+    top: 5px;
 }
 
 .sr .header.tall {
