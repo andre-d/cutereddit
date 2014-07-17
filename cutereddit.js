@@ -75,22 +75,29 @@ CuteReddit.ContentView = {
         if (data.kind == 't3') {
             var link = data.data;
             var $link = $('<div>').addClass('link')
+            var $outerlink = $('<div>').addClass('outerlink')
             
+            
+            var $status = $('<div>').addClass('status')
+            var $score = $('<span>').addClass('score').appendTo($status)
+           
+            var $comments = $('<span>').addClass('comments').appendTo($status)
+            $status.appendTo($outerlink)
+            
+            $outerlink.append($link)
             
             if (link.thumbnail && link.thumbnail.lastIndexOf('http', 0) == 0) {
                 var $thumb = $('<a>').addClass('thumb').appendTo($link)
                 $thumb.append($('<img>').attr('src', CuteReddit.Utils.reddit_cdn_url(link.thumbnail))).attr('href', link.url)
             }
             
-            
-            var $score = $('<span>').addClass('score').appendTo($link)
-           
-            var $comments = $('<span>').addClass('comments').appendTo($link)
-            var $title = $('<span>').append($('<a>')).addClass('title').appendTo($link)
-            $title.attr('href', '#' + link.permalink).find('a').append($('<span>').text(link.title))
-            $comments.append($('<label>').text('comments')).append($('<div>').text(link.num_comments))
-            $score.append($('<label>').text('score')).append($('<div>').text(link.score))
-            $('#content_body').append($link)
+
+            var $title = $('<a>').addClass('title').appendTo($link)
+            $title.attr('href', '#' + link.permalink).text(link.title)
+            $comments.text('comments ' + link.num_comments)
+            $score.text('score ' + link.score)
+
+            $('#content_body').append($outerlink)
         }
     },
     render_page: function(data) {

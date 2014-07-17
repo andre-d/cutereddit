@@ -14,10 +14,9 @@ body, html {
 }
 
 #content {
-    padding-left: 180px;
+    padding-left: 150px;
     height: 100%;
     width: 100%;
-    text-align: left;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     text-align: center;
@@ -125,72 +124,64 @@ body, html {
     Width: 100%;
 }
 
-.link {
-    display: block;
-    text-align: left;
+.outerlink {
     margin: 15px;
     overflow: hidden;
     box-shadow: 1px 1px 5px grey;
-    height: 100px;
+    border-radius: 3px;
+    background-color: rgba(128, 128, 128, .1);
+}
+
+.link {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    padding: 5px;
+    vertical-align: left;
 }
 
 .link .title {
-    display: inline;
-}
-
-.link .title a {
-    display: table;
+    height: 100px;
+    display: table-cell; 
+    text-align: center;
+    vertical-align: middle;
     color: black;
-    height: 100%;
     text-decoration: none;
     font-size: 16px;
     padding: 0 15px;
     margin: 0 auto;
 }
 
-.link .title a span {
-    vertical-align: middle;
-    display: table-cell; 
-}
-
 .link .thumb img {
-    height: 100px;
+    width: 100px;
 }
 
 .link .thumb {
     line-height: 0;
-    float: left;
     width: 100px;
     overflow: hidden;
-}
-
-.score, .comments {
-    float: right;
-    width: 100px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, .1);
-    height: 100px;
+    display: table-cell; 
     vertical-align: middle;
-    color: rgba(0, 0, 0, .6);
-    position: relative;
 }
 
-.score label, .comments label {
+.status {
     display: block;
-    line-height: normal;
-    color: rgba(0, 0, 0, .5);
+    line-height: 25px;
+    padding: 0 5px;
+    height: 25px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    color: rgba(0, 0, 0, .6);
     background-color: rgba(0, 0, 0, .1);
-    line-height: 20px;
-    font-weight: bold;
 }
 
 .score {
-    float: left;
+    float: right;
 }
 
-.score div, .comments div {
-    position: relative;
-    line-height: 80px;
+.comments {
+    float: left;
 }
 
 .app_title {
