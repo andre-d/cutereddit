@@ -105,7 +105,7 @@ CuteReddit.ContentView = {
             var thumbnail_url
             if (media_url.indexOf('http://i.imgur.com') == 0 || media_url.indexOf('http://imgur.com') == 0) {
                 media_url = CuteReddit.Utils.imgur_rewrite(media_url)
-                if (media_url.indexOf('http://imgur.com/gallery/') != 0) {
+                if (media_url.indexOf('https://imgur.com/gallery/') != 0) {
                     thumbnail_url = media_url.replace('http://', 'http://i.') + 'm.jpg'
                 }
             }
@@ -275,7 +275,9 @@ CuteReddit.Utils = {
     imgur_rewrite: function(path) {
         path = path.replace('/a/', '/gallery/')
         path = path.replace('i.imgur.com', 'imgur.com')
-        return path.replace('.jpg', '').replace('.gif', '')
+        path = path.replace('http://', 'https://')
+        path = path.split('?')[0]
+        return path.replace('.png', '').replace('.jpg', '').replace('.gif', '')
     },
     norm_path: function(path) {
         if (path.substr(-1) == '/') {
