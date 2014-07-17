@@ -121,6 +121,8 @@ body, html {
 
 #content_body {
     Width: 100%;
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 .outerlink {
