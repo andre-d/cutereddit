@@ -279,12 +279,19 @@ body, html {
 
 
 @media only screen and (max-width: 350px) {
-    .status {
+    .outerlink:not(..status {
         height: 50px;
         line-height: 25px;
     }
     .score, .comments {
         display: block;
         float: none;
+    }
+    .outerlink {
+        margin: 10px 5px;
+    }
+    .nest {
+        padding-right: 5px;
+        right: -5px;
     }
 }
