@@ -279,7 +279,7 @@ body, html {
 
 
 @media only screen and (max-width: 350px) {
-    .outerlink:not(..status {
+    .outerlink:not(.comment) .status {
         height: 50px;
         line-height: 25px;
     }

@@ -43,7 +43,7 @@ CuteReddit.SubredditButton = function(sr, name) {
 CuteReddit.SubredditButton.prototype = {
     init: function(sr, name) {
         this.sr = sr
-        name = name ? name : sr.display_name
+        name = sr.display_name
         var tall = false
         var url = CuteReddit.Utils.make_reddit_url('/static/reddit.com.header.png')
         if (this.sr.header_img && this.sr.header_size) {
