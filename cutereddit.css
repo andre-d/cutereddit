@@ -126,11 +126,27 @@ body, html {
 }
 
 .outerlink {
-    margin: 15px;
+    margin: 20px;
     overflow: hidden;
     box-shadow: 1px 1px 5px grey;
     border-radius: 3px;
-    background-color: rgba(128, 128, 128, .1);
+    background-color: rgba(100, 100, 100, .1);
+}
+
+.outerlink.comment.first {
+    border-left: 5px solid rgba(0, 0, 255, .3);
+}
+
+.outerlink.comment.second {
+    border-left: 5px solid rgba(0, 255, 0, .2);
+}
+
+.outerlink.comment.third {
+    border-left: 5px solid rgba(255, 0, 0, .3);
+}
+
+.outerlink.comment.fourth {
+    border-left: 5px solid rgba(255, 0, 255, .2);
 }
 
 .link {

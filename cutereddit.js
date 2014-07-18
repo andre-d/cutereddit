@@ -69,6 +69,7 @@ CuteReddit.SubredditButton.prototype = {
 }
 
 CuteReddit.ContentView = {
+    comment_classes: ["first", "second", "third", "fourth"],
     init: function(path, context) {
         this.path = path
         this.$el = $('#content')
@@ -148,6 +149,9 @@ CuteReddit.ContentView = {
             var comment = data.data
             var $link = $('<div>').addClass('link')
             var $outerlink = $('<div>').addClass('outerlink').addClass('comment')
+            
+            $outerlink.addClass(this.comment_classes[this.n_comment % this.comment_classes.length])
+            
             comment.$em = $outerlink
             
             var $status = $('<div>').addClass('status')
@@ -171,14 +175,17 @@ CuteReddit.ContentView = {
 
             var add = $.proxy(this.add_obj, this)
             if (comment.replies) {
+                this.n_comment += 1
                 $.each(comment.replies.data.children.reverse(), function(i, data) {
                     add(data, $outerlink);
                 })
+                this.n_comment -= 1
             }
         }
     },
     render_page: function(data) {
         this.$el.scrollTop(0);
+        this.n_comment = 0
         $('#context_header').empty();
         $('#content_body').empty()
         $('#context_header').append(new CuteReddit.SubredditButton(this.context, this.path).$el)
