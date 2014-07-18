@@ -296,4 +296,9 @@ body, html {
         padding-right: 5px;
         right: -5px;
     }
+    .nest .nest .nest {
+        border-left: none;
+        padding-right: 2px;
+        right: -2px;
+    }
 }
