@@ -95,9 +95,10 @@ CuteReddit.ContentView = {
             link.$em = $outerlink
             
             var $status = $('<div>').addClass('status')
+            
+            var $comments = $('<a>').addClass('comments').appendTo($status)
             var $score = $('<span>').addClass('score').appendTo($status)
            
-            var $comments = $('<a>').addClass('comments').appendTo($status)
             $status.appendTo($outerlink)
             
             $outerlink.append($link)
