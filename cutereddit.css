@@ -262,6 +262,10 @@ body, html {
         font-size: 14px;
         line-height: 32px;
     }
+    .comment .status {
+        height: 25px;
+        line-height: 25px;
+    }
     #content {
         padding-left: 100px;
     }
@@ -300,5 +304,8 @@ body, html {
         border-left: none;
         padding-right: 2px;
         right: -2px;
+    }
+    .comment p {
+        margin: 2px;
     }
 }
