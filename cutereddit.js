@@ -76,7 +76,7 @@ CuteReddit.ContentView = {
         this.$el.addClass('loading')
         this.context = context
         CuteReddit.Utils.ajax(
-            path + '.json'
+            path
         ).done($.proxy(this.render_page, this))
     },
     add_embed: function(link, data) {
@@ -206,7 +206,7 @@ CuteReddit.SubredditList = {
     init: function() {
         this.$el = $('#srlist')
         CuteReddit.Utils.ajax(
-            'subreddits.json',
+            'subreddits',
             {data: {limit: 10}}
         ).done($.proxy(this.init_list, this))
     },
@@ -231,7 +231,7 @@ CuteReddit.SubredditList = {
         this.initial_complete += 1
         nav_to = nav_to ? path : false
         CuteReddit.Utils.ajax(
-            '/r/' + name + '/about.json'
+            '/r/' + name + '/about'
         ).done($.proxy(this.add_from_response, this, nav_to))
     },
     add_from_response: function(nav_to, data) {
@@ -270,14 +270,12 @@ CuteReddit.SubredditList = {
 }
 
 CuteReddit.Utils = {
-    make_reddit_url: function(url) {
+    make_reddit_url: function(url, api) {
         if (url[0] != '/') {
-            url = '/' + url;
+            url = '/' + url
         }
-        var reddit = 'http://www.reddit.com'
-        if (location.protocol == 'https:') {
-            reddit = 'https://pay.reddit.com'
-        }
+        var subdomain = api ? 'api' : 'www'
+        var reddit = 'https://' + subdomain + '.reddit.com'
         return reddit + url
     },
     imgur_rewrite: function(path) {
@@ -302,21 +300,16 @@ CuteReddit.Utils = {
         return path
     },
     reddit_cdn_url: function(url) {
-        if (location.protocol == 'https:') {
-            return 'https://' + url.split('://')[1]
-        }
-        return url
+        return 'https://' + url.split('://')[1]
     },
-    ajax: function(url, options, jsonp) {
-        if (!jsonp) {
-            url = this.make_reddit_url(url)
-        }
+    ajax: function(url, options) {
+        url = this.make_reddit_url(url, true)
         return $.ajax(
             url,
             $.extend(
                 options,
                 {
-                    dataType: jsonp ? 'jsonp' : 'json'
+                    dataType: 'json'
                 }
             )
         )
